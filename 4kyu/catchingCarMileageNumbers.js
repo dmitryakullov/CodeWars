@@ -19,18 +19,8 @@ function isInteresting(_number, awesomePhrases = []) {
     });
 
   const isPalindrome = (numArr, num) => {
-    const isIncrement = +numArr[0] < +numArr[1],
-      firstPart = numArr.slice(0, Math.floor(numArr.length / 2));
-
-    const isFirstPartCorrect = firstPart.every((_, i) => {
-      const n2 = +firstPart[i + 1],
-        n1 = +firstPart[i];
-      if (isNaN(n2)) return true;
-
-      return isIncrement ? n2 > n1 : n2 < n1;
-    });
-
-    return isFirstPartCorrect && `${num}`.endsWith(firstPart.reverse().join(''));
+    const firstNumberHalf = numArr.slice(0, Math.floor(numArr.length / 2));
+    return `${num}`.endsWith(firstNumberHalf.reverse().join(''));
   };
 
   const checkNumber = (number) => {
@@ -67,4 +57,4 @@ function isInteresting(_number, awesomePhrases = []) {
   return result;
 }
 
-// console.log(isInteresting(346640, [23455, 2345, 99992, 456]));
+console.log(isInteresting(346641, [23455, 2345, 99992, 456]));
