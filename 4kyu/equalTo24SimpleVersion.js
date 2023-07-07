@@ -76,29 +76,41 @@ const addBrackets = (i, arr) => {
 
 // console.log(addBrackets(10, [1, '+', 2, '+', 3, '+', 4]).join(''));
 
-function equalTo24(a, b, c, d) {
+function equalTo24(...numbers) {
+  console.log(...numbers);
   let result = '';
   const amountOfSigns = S.length;
+  let counter = 0;
 
-  for (let q = 0; q < 11; q++) {
-    for (let x = 0; x < amountOfSigns; x++) {
-      for (let y = 0; y < amountOfSigns; y++) {
-        for (let z = 0; z < amountOfSigns; z++) {
-          if (result) break;
+  function createInstance(a, b, c, d) {
+    for (let q = 0; q < 11; q++) {
+      for (let x = 0; x < amountOfSigns; x++) {
+        for (let y = 0; y < amountOfSigns; y++) {
+          for (let z = 0; z < amountOfSigns; z++) {
+            if (result) break;
 
-          const instance = [a, S[x], b, S[y], c, S[z], d];
+            const instance = [a, S[x], b, S[y], c, S[z], d];
 
-          const str = addBrackets(q, instance).join('');
-
-          if (eval(str) === 24) {
-            result = str;
+            const str = addBrackets(q, instance).join('');
+            counter++;
+            if (eval(str) === 24) {
+              result = str;
+            }
           }
         }
       }
     }
   }
 
+  for (let i = 0; i < 4; i++) {
+    createInstance(numbers[0], numbers[1], numbers[2], numbers[3]);
+  }
+
+  console.log({ counter });
   return result || "It's not possible!";
 }
 
-console.log(equalTo24(1, 2, 3, 4));
+console.log(equalTo24(12, 13, 13, 6));
+
+//13 13 6 12
+//12 6 13 13
