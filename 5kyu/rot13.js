@@ -3,12 +3,14 @@
 
 const rot13 = (message) =>
   [...message]
-    .map((l) => {
-      const code = l.charCodeAt();
-      if (code < 65 || code > 122 || (code > 90 && code < 97)) return l;
+    .map((letter) => {
+      const code = letter.charCodeAt();
+      if (code < 65 || code > 122 || (code > 90 && code < 97)) return letter;
 
       const max = code <= 90 ? 90 : 122;
       const newCode = code + 13;
       return String.fromCharCode(newCode > max ? newCode - max + (max - 26) : newCode);
     })
     .join('');
+
+console.group(rot13('HGFrcashdvjhv'));
