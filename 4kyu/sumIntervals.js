@@ -14,3 +14,11 @@ const sumIntervals = (intervals) =>
       return [...a];
     }, [])
     .reduce((a, b) => a + (b[1] - b[0]), 0);
+
+console.log(
+  sumIntervals([
+    [1, 2],
+    [6, 10],
+    [11, 15],
+  ])
+);

@@ -18,3 +18,5 @@ const getConsectiveItems = (items, key) => {
   });
   return res.length ? Math.max(...res) : 0;
 };
+
+console.log(getConsectiveItems('abcdaaadse', 'a'));

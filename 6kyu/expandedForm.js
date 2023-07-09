@@ -7,3 +7,5 @@ function expandedForm(num) {
     return `${a}${i === 0 ? '' : ' + '}${b}${'0'.repeat(z.length - 1 - i)}`;
   }, '');
 }
+
+console.log(expandedForm(70304));

@@ -14,3 +14,5 @@ function queueTime(customers, n) {
 
   return Math.max(...checkOuts);
 }
+
+console.log(queueTime([10, 2, 3, 3], 2));

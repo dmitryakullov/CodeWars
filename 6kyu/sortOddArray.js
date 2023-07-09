@@ -12,3 +12,5 @@ function sortArray(arr) {
 
   return evenNum.map((el) => (el === null ? sortedOdd.shift() : el));
 }
+
+console.log(sortArray([2, 8, 6, 4, 3, 7, 8, 9, 0, 9, 7, 5, 4, 3, 1]));

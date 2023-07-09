@@ -42,3 +42,5 @@ const solution = (number) => {
     })
     .join('');
 };
+
+console.log(solution('2546'));

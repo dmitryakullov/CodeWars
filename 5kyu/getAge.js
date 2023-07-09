@@ -10,3 +10,5 @@ function getAge(birthDate, nowDate) {
 
   return last[0] + addYear - first[0];
 }
+
+console.log(getAge(new Date('1913/01/01'), new Date('2013/01/01')));
