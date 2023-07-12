@@ -46,3 +46,10 @@ function multiply(n, o) {
   numArr.splice(-endLength, 0, '.');
   return prepareNum(numArr.join(''));
 }
+
+console.log(
+  multiply(
+    '23456949824572384582345237549327546324897.3542452352',
+    '786765234592357982959278752456267462992478.00003546354634563546'
+  )
+);
