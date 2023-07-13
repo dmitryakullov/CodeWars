@@ -18,6 +18,23 @@ class Thing {
 
       return saveThis;
     };
+    globalThis.being_the = {
+      color: {
+        green: { color: 'green' },
+        blue: { color: 'blue' },
+      },
+    };
+
+    globalThis.being_the.color.blue.__proto__ = {
+      and_the: {
+        shape: {
+          round: {
+            color: 'blue',
+            shape: 'round',
+          },
+        },
+      },
+    };
 
     this.having = () => this;
     this.has = () => this;
@@ -46,9 +63,24 @@ class Thing {
     this.legs = [this, this];
 
     this.hands = [this, this];
-    this.hands.__proto__.each = (callBack) => callBack();
 
     this.torso = { name: 'torso' };
+
+    Array.prototype.each = function (callback) {
+      const resultArray = [];
+      for (let index = 0; index < this.length; index++) {
+        const callbackResult = callback(this[index]);
+
+        if (callbackResult.color) {
+          this[index].color = callbackResult.color;
+          this[index].shape = callbackResult.shape;
+          resultArray.push(this[index]);
+        } else {
+          resultArray.push(callbackResult);
+        }
+      }
+      return resultArray;
+    };
 
     this.can = {
       speak: (firstArgument, callMethod) => {
@@ -71,14 +103,5 @@ class Thing {
   }
 }
 
-// class Leg extends Thing {
-//   constructor() {
-//     super();
-//     this.name = 'leg';
-//   }
-// }
-
 const jane = new Thing('Jane');
-
-console.log(jane.has(2).hands.each((hand) => having(5).fingers));
-console.log(jane.hands.length);
+console.log(jane);
