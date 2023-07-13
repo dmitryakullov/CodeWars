@@ -3,7 +3,6 @@
 
 class Thing {
   name = '';
-  numberOfCallsHas = 0;
 
   constructor(name) {
     this.name = name;
@@ -12,11 +11,16 @@ class Thing {
 
     globalThis.name = name;
     globalThis.having = (numbers) => {
-      saveThis.fingers = [...new Array(numbers).fill(saveThis)];
-      saveThis.name = 'finger';
+      const fingersThis = Object.create(saveThis);
+      fingersThis.name = 'finger';
+
+      saveThis.fingers = [...new Array(numbers).fill(fingersThis)];
 
       return saveThis;
     };
+
+    this.having = () => this;
+    this.has = () => this;
 
     this.is_a = { person: true, woman: true };
     this.is_a_person = this.is_a.person;
@@ -27,17 +31,24 @@ class Thing {
     this.is_the = { parent_of: { joe: '' } };
     this.parent_of = Object.keys(this.is_the.parent_of)[0];
 
-    this.head = this;
-    this.eyes = [this, this];
-    this.arms = [this, this];
+    const headThis = Object.create(this);
+    headThis.name = 'head';
+    this.head = headThis;
+
+    const armThis = Object.create(this);
+    armThis.name = 'arm';
+    this.arms = [armThis, armThis];
+
+    const eyeThis = Object.create(this);
+    eyeThis.name = 'eye';
+    this.eyes = [eyeThis, eyeThis];
+
     this.legs = [this, this];
 
     this.hands = [this, this];
     this.hands.__proto__.each = (callBack) => callBack();
 
-    this.torso = {
-      name: 'torso',
-    };
+    this.torso = { name: 'torso' };
 
     this.can = {
       speak: (firstArgument, callMethod) => {
@@ -57,33 +68,6 @@ class Thing {
         };
       },
     };
-  }
-
-  #has(numbers) {
-    if (numbers === 2) {
-      this.name = 'arm';
-    }
-    if (numbers === 1) {
-      this.name = 'head';
-    }
-  }
-
-  having(numbers) {
-    this.#has(numbers);
-
-    if (this.numberOfCallsHas) {
-      this.name = 'eye';
-    }
-
-    return this;
-  }
-
-  has(numbers) {
-    this.numberOfCallsHas++;
-
-    this.#has(numbers);
-
-    return this;
   }
 }
 
