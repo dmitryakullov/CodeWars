@@ -1,6 +1,8 @@
 // https://www.codewars.com/kata/5571d9fc11526780a000011a/train/javascript
 // 13.07.2023
 
+// Should be solved using a Proxy
+
 class Thing {
   name = '';
 
