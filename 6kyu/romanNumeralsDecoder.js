@@ -45,4 +45,28 @@ function solution(_number) {
   return result;
 }
 
-console.log(solution('MDCLXVI'));
+console.log(solution('MCDLXIVI'));
+
+// 05.08.2024
+
+const symbols = {
+  I: 1,
+  V: 5,
+  X: 10,
+  L: 50,
+  C: 100,
+  D: 500,
+  M: 1000,
+};
+
+const converter = (num) =>
+  num
+    .toUpperCase()
+    .split('')
+    .reduce(
+      (a, b, i, arr) =>
+        !arr[i + 1] || symbols[b] >= symbols[arr[i + 1]] ? a + symbols[b] : a - symbols[b],
+      0
+    );
+
+console.log(converter('MCDLXIVI'));
