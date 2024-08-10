@@ -64,3 +64,93 @@
 //   }
 //   console.log(arr.join(' '));
 // }
+
+// Dot
+// 0 0 0
+// 0 X 0
+// 0 0 0
+
+// const len = 5;
+// for (let i = 0; i < len; i++) {
+//   const arr = [];
+//   for (let j = 0; j < len; j++) {
+//     const middle = Math.floor(len / 2);
+//     if (j === middle && i === middle) {
+//       arr.push('X');
+//     } else {
+//       arr.push('.');
+//     }
+//   }
+//   console.log(arr.join(' '));
+// }
+
+// Square
+// X X X X
+// X 0 0 X
+// X 0 0 X
+// X X X X
+
+// const len = 6;
+// for (let i = 0; i < len; i++) {
+//   const arr = [];
+//   for (let j = 0; j < len; j++) {
+//     if (i === 0 || i === len - 1) {
+//       arr.push('X');
+//     } else if (j === 0 || j === len - 1) {
+//       arr.push('X');
+//     } else {
+//       arr.push('.');
+//     }
+//   }
+//   console.log(arr.join(' '));
+// }
+
+// Square in square
+// X X X X X X X
+// X 0 0 0 0 0 X
+// X 0 X X X 0 X
+// X 0 X 0 X 0 X
+// X 0 X X X 0 X
+// X 0 0 0 0 0 X
+// X X X X X X X
+
+// const len = 11;
+// for (let i = 0; i < len; i++) {
+//   const arr = [];
+//   for (let j = 0; j < len; j++) {
+//     if (len / 2 > i) {
+//       if (!(i % 2) && j >= 0 + i && j < len - i) {
+//         arr.push('X');
+//       } else if (len / 2 > j) {
+//         if (!(j % 2) && i >= 0 + j) {
+//           arr.push('X');
+//         } else {
+//           arr.push('.');
+//         }
+//       } else {
+//         if (!(j % 2) && i >= len - j - 1) {
+//           arr.push('X');
+//         } else {
+//           arr.push('.');
+//         }
+//       }
+//     } else {
+//       if (!(i % 2) && j >= len - i - 1 && j < len - ((len % i) - 1)) {
+//         arr.push('X');
+//       } else if (len / 2 > j) {
+//         if (!(j % 2) && i < len - j) {
+//           arr.push('X');
+//         } else {
+//           arr.push('.');
+//         }
+//       } else {
+//         if (!(j % 2) && i < len - ((len % j) - 1)) {
+//           arr.push('X');
+//         } else {
+//           arr.push('.');
+//         }
+//       }
+//     }
+//   }
+//   console.log(arr.join(' '));
+// }
