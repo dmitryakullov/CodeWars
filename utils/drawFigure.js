@@ -338,6 +338,30 @@
 //   console.log(arr.join(' '));
 // }
 
+// Narrow Christmas tree
+// 0 0 0 0 X 0 0 0 0
+// 0 0 0 X X X 0 0 0
+// 0 0 X X X X X 0 0
+// 0 0 0 0 X 0 0 0 0
+// 0 0 0 X X X 0 0 0
+// 0 0 X X X X X 0 0
+// 0 0 0 0 X 0 0 0 0
+// 0 0 0 X X X 0 0 0
+// 0 0 X X X X X 0 0
+
+// const len = 9;
+// for (let i = 0; i < len; i++) {
+//   const arr = [];
+//   for (let j = 0; j < len; j++) {
+//     if (j >= Math.floor(len / 2) - (i % 3) && j < Math.ceil(len / 2) + (i % 3)) {
+//       arr.push('X');
+//     } else {
+//       arr.push('.');
+//     }
+//   }
+//   console.log(arr.join(' '));
+// }
+
 // Christmas tree
 // 0 0 0 0 X 0 0 0 0
 // 0 0 0 X X X 0 0 0
@@ -349,11 +373,19 @@
 // 0 X X X X X X X 0
 // X X X X X X X X X
 
-// const len = 9;
+// const len = 15;
+// const getOffset = (num, index, multiple) =>
+//   num < multiple ? index : getOffset(num, index + 1, multiple + 3);
+
 // for (let i = 0; i < len; i++) {
 //   const arr = [];
 //   for (let j = 0; j < len; j++) {
-//     if (j >= Math.floor(len / 2) - (i % 3) && j < Math.ceil(len / 2) + (i % 3)) {
+//     const step = 3;
+//     const offset = getOffset(i, 0, step);
+//     if (
+//       j >= Math.floor(len / 2) - ((i % step) + offset) &&
+//       j < Math.ceil(len / 2) + ((i % step) + offset)
+//     ) {
 //       arr.push('X');
 //     } else {
 //       arr.push('.');
