@@ -68,10 +68,10 @@
 // for (let i = 0; i < len; i++) {
 //   const arr = [];
 //   for (let j = 0; j < len; j++) {
-//     if (i % 2) {
-//       j % 2 ? arr.push('.') : arr.push('X');
+//     if ((!(i % 2) && j % 2) || (i % 2 && !(j % 2))) {
+//       arr.push('X');
 //     } else {
-//       j % 2 ? arr.push('X') : arr.push('.');
+//       arr.push('.');
 //     }
 //   }
 //   console.log(arr.join(' '));
@@ -170,6 +170,44 @@
 //     } else {
 //       if (j >= i - len / 2 && j <= len / 2 + (len % (i + 1))) {
 //         arr.push('X');
+//       } else {
+//         arr.push('.');
+//       }
+//     }
+//   }
+//   console.log(arr.join(' '));
+// }
+
+// Rhombus in rhombus
+// 0 0 0 X 0 0 0
+// 0 0 X 0 X 0 0
+// 0 X 0 X 0 X 0
+// X 0 X 0 X 0 X
+// 0 X 0 X 0 X 0
+// 0 0 X 0 X 0 0
+// 0 0 0 X 0 0 0
+
+// const len = 15;
+// for (let i = 0; i < len; i++) {
+//   const arr = [];
+//   for (let j = 0; j < len; j++) {
+//     if (len / 2 > i) {
+//       if (j >= Math.floor(len / 2) - i && j < Math.ceil(len / 2) + i) {
+//         if ((!(i % 2) && j % 2) || (i % 2 && !(j % 2))) {
+//           arr.push('X');
+//         } else {
+//           arr.push('.');
+//         }
+//       } else {
+//         arr.push('.');
+//       }
+//     } else {
+//       if (j >= i - Math.floor(len / 2) && j < len - i - 1 + Math.ceil(len / 2)) {
+//         if ((!(i % 2) && j % 2) || (i % 2 && !(j % 2))) {
+//           arr.push('X');
+//         } else {
+//           arr.push('.');
+//         }
 //       } else {
 //         arr.push('.');
 //       }
