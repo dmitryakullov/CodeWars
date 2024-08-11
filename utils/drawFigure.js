@@ -114,37 +114,38 @@
 // X 0 0 0 0 0 X
 // X X X X X X X
 
-// const len = 11;
+// const len = 15;
+// const isOdd = !!(len % 2);
 // for (let i = 0; i < len; i++) {
 //   const arr = [];
 //   for (let j = 0; j < len; j++) {
-//     if (len / 2 > i) {
+//     if (isOdd ? len / 2 > i : len / 2 - 1 >= i) {
 //       if (!(i % 2) && j >= 0 + i && j < len - i) {
 //         arr.push('X');
-//       } else if (len / 2 > j) {
+//       } else if (isOdd ? len / 2 > j : len / 2 - 1 >= j) {
 //         if (!(j % 2) && i >= 0 + j) {
 //           arr.push('X');
 //         } else {
 //           arr.push('.');
 //         }
 //       } else {
-//         if (!(j % 2) && i >= len - j - 1) {
+//         if ((isOdd ? !(j % 2) : j % 2) && i >= len - j - 1) {
 //           arr.push('X');
 //         } else {
 //           arr.push('.');
 //         }
 //       }
 //     } else {
-//       if (!(i % 2) && j >= len - i - 1 && j < len - ((len % i) - 1)) {
+//       if ((isOdd ? !(i % 2) : i % 2) && j >= len - i - 1 && j < len - (len % (isOdd ? i : i + 1))) {
 //         arr.push('X');
-//       } else if (len / 2 > j) {
+//       } else if (isOdd ? len / 2 > j : len / 2 - 1 >= j) {
 //         if (!(j % 2) && i < len - j) {
 //           arr.push('X');
 //         } else {
 //           arr.push('.');
 //         }
 //       } else {
-//         if (!(j % 2) && i < len - ((len % j) - 1)) {
+//         if ((isOdd ? !(j % 2) : j % 2) && i < len - (isOdd ? (len % j) - 1 : len % (j + 1))) {
 //           arr.push('X');
 //         } else {
 //           arr.push('.');
