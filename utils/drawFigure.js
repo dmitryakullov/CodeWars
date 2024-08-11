@@ -99,6 +99,28 @@
 //   console.log(arr.join(' '));
 // }
 
+// Empty rhombus
+// 0 0 X 0 0
+// 0 X 0 X 0
+// X 0 0 0 X
+// 0 X 0 X 0
+// 0 0 X 0 0
+
+// const len = 9;
+// for (let i = 0; i < len; i++) {
+//   const arr = [];
+//   for (let j = 0; j < len; j++) {
+//     if (i + Math.floor(len / 2) - (len / 2 > i ? 0 : len - 1) === j) {
+//       arr.push('X');
+//     } else if (len - (Math.floor(len / 2) + i + 1) + (len / 2 > i ? 0 : len - 1) === j) {
+//       arr.push('X');
+//     } else {
+//       arr.push('.');
+//     }
+//   }
+//   console.log(arr.join(' '));
+// }
+
 // Rhombus odd
 // 0 0 X 0 0
 // 0 X X X 0
@@ -156,7 +178,7 @@
 //   console.log(arr.join(' '));
 // }
 
-// 2 arrows
+// 2 Up arrows
 // 0 0 X 0 0
 // 0 X X X 0
 // X X X X X
@@ -176,6 +198,35 @@
 //       }
 //     } else {
 //       if (Math.floor(len / 2) - (i - len / 2) <= j && Math.ceil(len / 2) + (i - len / 2 - 1) > j) {
+//         arr.push('X');
+//       } else {
+//         arr.push('.');
+//       }
+//     }
+//   }
+//   console.log(arr.join(' '));
+// }
+
+// 2 Down arrows
+// X X X X X
+// 0 X X X 0
+// 0 0 X 0 0
+// X X X X X
+// 0 X X X 0
+// 0 0 X 0 0
+
+// const len = 5;
+// for (let i = 0; i < len + 1; i++) {
+//   const arr = [];
+//   for (let j = 0; j < len; j++) {
+//     if (Math.ceil(len / 2) >= i + 1) {
+//       if (i <= j && len - i - 1 >= j) {
+//         arr.push('X');
+//       } else {
+//         arr.push('.');
+//       }
+//     } else {
+//       if (i - Math.ceil(len / 2) <= j && len - i - 1 + Math.ceil(len / 2) >= j) {
 //         arr.push('X');
 //       } else {
 //         arr.push('.');
@@ -231,28 +282,6 @@
 //           arr.push('.');
 //         }
 //       }
-//     }
-//   }
-//   console.log(arr.join(' '));
-// }
-
-// Empty rhombus
-// 0 0 X 0 0
-// 0 X 0 X 0
-// X 0 0 0 X
-// 0 X 0 X 0
-// 0 0 X 0 0
-
-// const len = 9;
-// for (let i = 0; i < len; i++) {
-//   const arr = [];
-//   for (let j = 0; j < len; j++) {
-//     if (i + Math.floor(len / 2) - (len / 2 > i ? 0 : len - 1) === j) {
-//       arr.push('X');
-//     } else if (len - (Math.floor(len / 2) + i + 1) + (len / 2 > i ? 0 : len - 1) === j) {
-//       arr.push('X');
-//     } else {
-//       arr.push('.');
 //     }
 //   }
 //   console.log(arr.join(' '));
