@@ -236,6 +236,28 @@
 //   console.log(arr.join(' '));
 // }
 
+// Empty rhombus
+// 0 0 X 0 0
+// 0 X 0 X 0
+// X 0 0 0 X
+// 0 X 0 X 0
+// 0 0 X 0 0
+
+// const len = 9;
+// for (let i = 0; i < len; i++) {
+//   const arr = [];
+//   for (let j = 0; j < len; j++) {
+//     if (i + Math.floor(len / 2) - (len / 2 > i ? 0 : len - 1) === j) {
+//       arr.push('X');
+//     } else if (len - (Math.floor(len / 2) + i + 1) + (len / 2 > i ? 0 : len - 1) === j) {
+//       arr.push('X');
+//     } else {
+//       arr.push('.');
+//     }
+//   }
+//   console.log(arr.join(' '));
+// }
+
 // Christmas tree
 // 0 0 0 0 X 0 0 0 0
 // 0 0 0 X X X 0 0 0
@@ -250,8 +272,6 @@
 // const len = 9;
 // for (let i = 0; i < len; i++) {
 //   const arr = [];
-//   for (let j = 0; j < len; j++) {
-
-//   }
+//   for (let j = 0; j < len; j++) {}
 //   console.log(arr.join(' '));
 // }
