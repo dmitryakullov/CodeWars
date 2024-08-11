@@ -190,18 +190,13 @@
 // for (let i = 0; i < len + 1; i++) {
 //   const arr = [];
 //   for (let j = 0; j < len; j++) {
-//     if (Math.ceil(len / 2) >= i + 1) {
-//       if (Math.floor(len / 2) - i <= j && Math.ceil(len / 2) + i > j) {
-//         arr.push('X');
-//       } else {
-//         arr.push('.');
-//       }
+//     if (
+//       Math.floor(len / 2) - (i % ((len + 1) / 2)) <= j &&
+//       Math.ceil(len / 2) + (i % ((len + 1) / 2)) > j
+//     ) {
+//       arr.push('X');
 //     } else {
-//       if (Math.floor(len / 2) - (i - len / 2) <= j && Math.ceil(len / 2) + (i - len / 2 - 1) > j) {
-//         arr.push('X');
-//       } else {
-//         arr.push('.');
-//       }
+//       arr.push('.');
 //     }
 //   }
 //   console.log(arr.join(' '));
@@ -357,6 +352,12 @@
 // const len = 9;
 // for (let i = 0; i < len; i++) {
 //   const arr = [];
-//   for (let j = 0; j < len; j++) {}
+//   for (let j = 0; j < len; j++) {
+//     if (j >= Math.floor(len / 2) - (i % 3) && j < Math.ceil(len / 2) + (i % 3)) {
+//       arr.push('X');
+//     } else {
+//       arr.push('.');
+//     }
+//   }
 //   console.log(arr.join(' '));
 // }
