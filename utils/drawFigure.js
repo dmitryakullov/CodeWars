@@ -1,7 +1,9 @@
-// Dot
-// 0 0 0
-// 0 X 0
-// 0 0 0
+// Dot in Center
+// . . . . .
+// . . . . .
+// . . X . .
+// . . . . .
+// . . . . .
 
 // const len = 5;
 // for (let i = 0; i < len; i++) {
@@ -18,11 +20,11 @@
 // }
 
 // Cross
-// X 0 0 0 X
-// 0 X 0 X 0
-// 0 0 X 0 0
-// 0 X 0 X 0
-// X 0 0 0 X
+// X . . . X
+// . X . X .
+// . . X . .
+// . X . X .
+// X . . . X
 
 // const len = 7;
 // for (let i = 0; i < len; i++) {
@@ -39,8 +41,8 @@
 
 // Square
 // X X X X
-// X 0 0 X
-// X 0 0 X
+// X . . X
+// X . . X
 // X X X X
 
 // const len = 6;
@@ -58,11 +60,11 @@
 //   console.log(arr.join(' '));
 // }
 
-// chess board
-// 0 X 0 X
-// X 0 X 0
-// 0 X 0 X
-// X 0 X 0
+// Chess board
+// . X . X
+// X . X .
+// . X . X
+// X . X .
 
 // const len = 8;
 // for (let i = 0; i < len; i++) {
@@ -78,13 +80,15 @@
 // }
 
 // Square with cross
-// X X X X X
-// X X 0 X X
-// X 0 X 0 X
-// X X 0 X X
-// X X X X X
+// X X X X X X X
+// X X . . . X X
+// X . X . X . X
+// X . . X . . X
+// X . X . X . X
+// X X . . . X X
+// X X X X X X X
 
-// const len = 10;
+// const len = 7;
 // for (let i = 0; i < len; i++) {
 //   const arr = [];
 //   for (let j = 0; j < len; j++) {
@@ -99,12 +103,36 @@
 //   console.log(arr.join(' '));
 // }
 
+// Narrow Christmas tree
+// . . . . X . . . .
+// . . . X X X . . .
+// . . X X X X X . .
+// . . . . X . . . .
+// . . . X X X . . .
+// . . X X X X X . .
+// . . . . X . . . .
+// . . . X X X . . .
+// . . X X X X X . .
+
+// const len = 9;
+// for (let i = 0; i < len; i++) {
+//   const arr = [];
+//   for (let j = 0; j < len; j++) {
+//     if (j >= Math.floor(len / 2) - (i % 3) && j < Math.ceil(len / 2) + (i % 3)) {
+//       arr.push('X');
+//     } else {
+//       arr.push('.');
+//     }
+//   }
+//   console.log(arr.join(' '));
+// }
+
 // Empty rhombus
-// 0 0 X 0 0
-// 0 X 0 X 0
-// X 0 0 0 X
-// 0 X 0 X 0
-// 0 0 X 0 0
+// . . X . .
+// . X . X .
+// X . . . X
+// . X . X .
+// . . X . .
 
 // const len = 9;
 // for (let i = 0; i < len; i++) {
@@ -122,11 +150,11 @@
 // }
 
 // Rhombus odd
-// 0 0 X 0 0
-// 0 X X X 0
+// . . X . .
+// . X X X .
 // X X X X X
-// 0 X X X 0
-// 0 0 X 0 0
+// . X X X .
+// . . X . .
 
 // const len = 9;
 // for (let i = 0; i < len; i++) {
@@ -150,12 +178,12 @@
 // }
 
 // Rhombus even
-// 0 0 X X 0 0
-// 0 X X X X 0
+// . . X X . .
+// . X X X X .
 // X X X X X X
 // X X X X X X
-// 0 X X X X 0
-// 0 0 X X 0 0
+// . X X X X .
+// . . X X . .
 
 // const len = 8;
 // for (let i = 0; i < len; i++) {
@@ -179,13 +207,13 @@
 // }
 
 // Rhombus in rhombus
-// 0 0 0 X 0 0 0
-// 0 0 X 0 X 0 0
-// 0 X 0 X 0 X 0
-// X 0 X 0 X 0 X
-// 0 X 0 X 0 X 0
-// 0 0 X 0 X 0 0
-// 0 0 0 X 0 0 0
+// . . . X . . .
+// . . X . X . .
+// . X . X . X .
+// X . X . X . X
+// . X . X . X .
+// . . X . X . .
+// . . . X . . .
 
 // const len = 15;
 // for (let i = 0; i < len; i++) {
@@ -217,11 +245,11 @@
 // }
 
 // 2 Up arrows
-// 0 0 X 0 0
-// 0 X X X 0
+// . . X . .
+// . X X X .
 // X X X X X
-// 0 0 X 0 0
-// 0 X X X 0
+// . . X . .
+// . X X X .
 // X X X X X
 
 // const len = 9;
@@ -242,11 +270,11 @@
 
 // 2 Down arrows
 // X X X X X
-// 0 X X X 0
-// 0 0 X 0 0
+// . X X X .
+// . . X . .
 // X X X X X
-// 0 X X X 0
-// 0 0 X 0 0
+// . X X X .
+// . . X . .
 
 // const len = 9;
 // for (let i = 0; i < len + 1; i++) {
@@ -270,11 +298,11 @@
 // }
 
 // Arrows in center
-// X 0 0 0 X
-// X X 0 X X
+// X . . . X
+// X X . X X
 // X X X X X
-// X X 0 X X
-// X 0 0 0 X
+// X X . X X
+// X . . . X
 
 // const len = 9;
 // for (let i = 0; i < len; i++) {
@@ -298,11 +326,11 @@
 // }
 
 // Arrows right
-// X 0 0 X 0 0
-// X X 0 X X 0
+// X . . X . .
+// X X . X X .
 // X X X X X X
-// X X 0 X X 0
-// X 0 0 X 0 0
+// X X . X X .
+// X . . X . .
 
 // const len = 9;
 // for (let i = 0; i < len; i++) {
@@ -327,11 +355,11 @@
 
 // Square in square
 // X X X X X X X
-// X 0 0 0 0 0 X
-// X 0 X X X 0 X
-// X 0 X 0 X 0 X
-// X 0 X X X 0 X
-// X 0 0 0 0 0 X
+// X . . . . . X
+// X . X X X . X
+// X . X . X . X
+// X . X X X . X
+// X . . . . . X
 // X X X X X X X
 
 // const len = 15;
@@ -376,39 +404,15 @@
 //   console.log(arr.join(' '));
 // }
 
-// Narrow Christmas tree
-// 0 0 0 0 X 0 0 0 0
-// 0 0 0 X X X 0 0 0
-// 0 0 X X X X X 0 0
-// 0 0 0 0 X 0 0 0 0
-// 0 0 0 X X X 0 0 0
-// 0 0 X X X X X 0 0
-// 0 0 0 0 X 0 0 0 0
-// 0 0 0 X X X 0 0 0
-// 0 0 X X X X X 0 0
-
-// const len = 9;
-// for (let i = 0; i < len; i++) {
-//   const arr = [];
-//   for (let j = 0; j < len; j++) {
-//     if (j >= Math.floor(len / 2) - (i % 3) && j < Math.ceil(len / 2) + (i % 3)) {
-//       arr.push('X');
-//     } else {
-//       arr.push('.');
-//     }
-//   }
-//   console.log(arr.join(' '));
-// }
-
 // Christmas tree
-// 0 0 0 0 X 0 0 0 0
-// 0 0 0 X X X 0 0 0
-// 0 0 X X X X X 0 0
-// 0 0 0 X X X 0 0 0
-// 0 0 X X X X X 0 0
-// 0 X X X X X X X 0
-// 0 0 X X X X X 0 0
-// 0 X X X X X X X 0
+// . . . . X . . . .
+// . . . X X X . . .
+// . . X X X X X . .
+// . . . X X X . . .
+// . . X X X X X . .
+// . X X X X X X X .
+// . . X X X X X . .
+// . X X X X X X X .
 // X X X X X X X X X
 
 // const len = 15;
