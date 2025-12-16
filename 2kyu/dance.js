@@ -1,14 +1,14 @@
 // https://www.codewars.com/kata/58f58dc3663082a4ba000033/train/javascript
 
 const getAllPositions = (i, j) => [
-  [i, j - 1],
-  [i - 1, j - 1],
-  [i - 1, j],
-  [i - 1, j + 1],
-  [i, j + 1],
-  [i + 1, j + 1],
-  [i + 1, j],
-  [i + 1, j - 1],
+  [i, j - 1, '←'],
+  [i - 1, j - 1, '↖'],
+  [i - 1, j, '↑'],
+  [i - 1, j + 1, '↗'],
+  [i, j + 1, '→'],
+  [i + 1, j + 1, '↘'],
+  [i + 1, j, '↓'],
+  [i + 1, j - 1, '↙'],
 ];
 
 const getExistedPositions = (cells, maxRow, maxCol) =>
@@ -34,16 +34,28 @@ const directions = {
   S: (i, j, maxRow, maxCol) => getExistedPositions(getAllPositions(i, j), maxRow, maxCol),
 };
 
-function dance(raw) {
-  const init = raw
-    .split('\n')
-    .map((row, i) =>
-      row.split('').map((cell, j) => ({ row: i, col: j, value: cell, isTouched: false }))
-    );
+function dance(stringDanceFloor) {
+  const rows = stringDanceFloor.split('\n');
+  const rowCount = rows.length;
+  const colCount = rows[0].length;
 
-  const starts = init.flat().filter((value) => value.value === 'S');
+  const configuredDanceFloor = rows.map((row, i) =>
+    row.split('').map((cell, j) => ({
+      row: i,
+      col: j,
+      value: cell,
+      isTouched: false,
+      availableMoves: directions[cell](i, j, rowCount, colCount),
+    }))
+  );
 
-  console.log(starts);
+  const starts = configuredDanceFloor.flat().filter((value) => value.value === 'S');
+
+  const counter = () => {};
+
+  starts.forEach((S) => {});
+
+  console.log(starts[0].availableMoves);
 }
 
 dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘');
