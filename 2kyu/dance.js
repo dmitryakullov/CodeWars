@@ -2,6 +2,7 @@
 
 function dance(map) {
   const init = map.split('\n')
+  
   console.log(init)
 }
 
