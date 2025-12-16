@@ -1,18 +1,18 @@
 // https://www.codewars.com/kata/58f58dc3663082a4ba000033/train/javascript
 
 const getAllPositions = (i, j) => [
-  [i, j - 1, '←'],
-  [i - 1, j - 1, '↖'],
-  [i - 1, j, '↑'],
-  [i - 1, j + 1, '↗'],
-  [i, j + 1, '→'],
-  [i + 1, j + 1, '↘'],
-  [i + 1, j, '↓'],
-  [i + 1, j - 1, '↙'],
+  { row: i, col: j - 1, dir: '←' },
+  { row: i - 1, col: j - 1, dir: '↖' },
+  { row: i - 1, col: j, dir: '↑' },
+  { row: i - 1, col: j + 1, dir: '↗' },
+  { row: i, col: j + 1, dir: '→' },
+  { row: i + 1, col: j + 1, dir: '↘' },
+  { row: i + 1, col: j, dir: '↓' },
+  { row: i + 1, col: j - 1, dir: '↙' },
 ];
 
 const getExistedPositions = (cells, maxRow, maxCol) =>
-  cells.filter(([row, col]) => row >= 0 && row < maxRow && col >= 0 && col < maxCol);
+  cells.filter(({ row, col }) => row >= 0 && row < maxRow && col >= 0 && col < maxCol);
 
 const getValidPositions = (sliceIndex, i, j, maxRow, maxCol) => {
   const positions = [...getAllPositions(i, j), ...getAllPositions(i, j)];
@@ -51,14 +51,29 @@ function dance(stringDanceFloor) {
 
   const starts = configuredDanceFloor.flat().filter((value) => value.value === 'S');
 
-  const counter = () => {};
+  const counter = (cell, danceFloor) => {};
 
-  starts.forEach((S) => {});
-
-  console.log(starts[0].availableMoves);
+  starts.map((S) => {
+    console.log(S);
+  });
 }
 
 dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘');
+
+// row: 2,
+// col: 2,
+// value: 'S',
+// isTouched: false,
+// availableMoves: [
+//   { row: 2, col: 1, dir: '←' },
+//   { row: 1, col: 1, dir: '↖' },
+//   { row: 1, col: 2, dir: '↑' },
+//   { row: 1, col: 3, dir: '↗' },
+//   { row: 2, col: 3, dir: '→' },
+//   { row: 3, col: 3, dir: '↘' },
+//   { row: 3, col: 2, dir: '↓' },
+//   { row: 3, col: 1, dir: '↙' }
+// ]
 
 // console.log(
 //   JSON.stringify(
