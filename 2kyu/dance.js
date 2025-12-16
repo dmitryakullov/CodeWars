@@ -43,15 +43,17 @@ function dance(stringDanceFloor) {
     row.split('').map((cell, j) => ({
       row: i,
       col: j,
-      value: cell,
+      dir: cell,
       isTouched: false,
       availableMoves: directions[cell](i, j, rowCount, colCount),
     }))
   );
 
-  const starts = configuredDanceFloor.flat().filter((value) => value.value === 'S');
+  const starts = configuredDanceFloor.flat().filter((value) => value.dir === 'S');
 
-  const counter = (cell, danceFloor) => {};
+  const counter = (cell, sequence) => {
+    const { row, col, dir, availableMoves } = cell;
+  };
 
   starts.map((S) => {
     console.log(S);
@@ -62,7 +64,7 @@ dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→�
 
 // row: 2,
 // col: 2,
-// value: 'S',
+// dir: 'S',
 // isTouched: false,
 // availableMoves: [
 //   { row: 2, col: 1, dir: '←' },
