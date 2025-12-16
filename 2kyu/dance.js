@@ -7,7 +7,7 @@ function dance(raw) {
       row.split('').map((cell, j) => ({ row: i, col: j, value: cell, isTouched: false }))
     );
 
-  console.log(init);
+  const starts = init.flat().filter((value) => value.value === 'S');
 }
 
 dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘');
