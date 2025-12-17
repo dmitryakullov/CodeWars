@@ -1,25 +1,32 @@
 // https://www.codewars.com/kata/58f58dc3663082a4ba000033/train/javascript
+// TIME
 
-const getAllPositions = (i, j) => [
-  { row: i, col: j - 1, dir: '←' },
-  { row: i - 1, col: j - 1, dir: '↖' },
-  { row: i - 1, col: j, dir: '↑' },
-  { row: i - 1, col: j + 1, dir: '↗' },
-  { row: i, col: j + 1, dir: '→' },
-  { row: i + 1, col: j + 1, dir: '↘' },
-  { row: i + 1, col: j, dir: '↓' },
-  { row: i + 1, col: j - 1, dir: '↙' },
+// Available moves from a cell based on its direction
+// OK: (→) - ('↑', '↗', '→', '↘', '↓')
+// NO: (→) - ('↙', '←', '↖')
+
+console.time();
+
+const getPositionsAroundCell = (i, j) => [
+  { row: i, col: j - 1, direction: '←' },
+  { row: i - 1, col: j - 1, direction: '↖' },
+  { row: i - 1, col: j, direction: '↑' },
+  { row: i - 1, col: j + 1, direction: '↗' },
+  { row: i, col: j + 1, direction: '→' },
+  { row: i + 1, col: j + 1, direction: '↘' },
+  { row: i + 1, col: j, direction: '↓' },
+  { row: i + 1, col: j - 1, direction: '↙' },
 ];
 
-const getExistedPositions = (cells, maxRow, maxCol) =>
+const getExistedPositionsOnTheBoard = (cells, maxRow, maxCol) =>
   cells.filter(({ row, col }) => row >= 0 && row < maxRow && col >= 0 && col < maxCol);
 
 const getValidPositions = (sliceIndex, i, j, maxRow, maxCol) => {
-  const positions = [...getAllPositions(i, j), ...getAllPositions(i, j)];
+  const positionsList = [...getPositionsAroundCell(i, j), ...getPositionsAroundCell(i, j)];
 
-  const allowedMovementDirections = positions.slice(sliceIndex, sliceIndex + 5);
+  const allowedMovementDirections = positionsList.slice(sliceIndex, sliceIndex + 5);
 
-  return getExistedPositions(allowedMovementDirections, maxRow, maxCol);
+  return getExistedPositionsOnTheBoard(allowedMovementDirections, maxRow, maxCol);
 };
 
 const directions = {
@@ -31,7 +38,8 @@ const directions = {
   '↙': (i, j, maxRow, maxCol) => getValidPositions(5, i, j, maxRow, maxCol),
   '←': (i, j, maxRow, maxCol) => getValidPositions(6, i, j, maxRow, maxCol),
   '↖': (i, j, maxRow, maxCol) => getValidPositions(7, i, j, maxRow, maxCol),
-  S: (i, j, maxRow, maxCol) => getExistedPositions(getAllPositions(i, j), maxRow, maxCol),
+  S: (i, j, maxRow, maxCol) =>
+    getExistedPositionsOnTheBoard(getPositionsAroundCell(i, j), maxRow, maxCol),
 };
 
 function dance(stringDanceFloor) {
@@ -43,29 +51,55 @@ function dance(stringDanceFloor) {
     row.split('').map((cell, j) => ({
       row: i,
       col: j,
-      dir: cell,
-      isTouched: false,
+      direction: cell,
       availableMoves: directions[cell](i, j, rowCount, colCount),
     }))
   );
 
-  const starts = configuredDanceFloor.flat().filter((value) => value.dir === 'S');
+  const danceFloorWithFilteredAvailableMoves = configuredDanceFloor.map((row) =>
+    row.map((cell) => {
+      const filteredAvailableMoves = cell.availableMoves.filter(({ row, col }) => {
+        const nearbyCell = configuredDanceFloor[row][col];
+
+        if (nearbyCell.direction === 'S') return true;
+
+        const isOpposingArrow = nearbyCell.availableMoves.some((move, index) => {
+          const isExistMatch = move.row === cell.row && move.col === cell.col;
+          if (!isExistMatch) return false;
+
+          return index !== 0 && index !== 4;
+        });
+
+        return !isOpposingArrow;
+      });
+      return { ...cell, availableMoves: filteredAvailableMoves };
+    })
+  );
+
+  console.log(danceFloorWithFilteredAvailableMoves[2]);
+
+  const starts = danceFloorWithFilteredAvailableMoves
+    .flat()
+    .filter((value) => value.direction === 'S');
 
   const counter = (cell, sequence) => {
-    const { row, col, dir, availableMoves } = cell;
+    const { row, col, direction, availableMoves } = cell;
   };
 
-  starts.map((S) => {
-    console.log(S);
-  });
+  // starts.map((S) => {
+  //   console.log(S);
+  // });
 }
 
 dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘');
 
+console.timeEnd();
+// ↖→↓←↗
+// ↑↖↓→↓
+
 // row: 2,
 // col: 2,
 // dir: 'S',
-// isTouched: false,
 // availableMoves: [
 //   { row: 2, col: 1, dir: '←' },
 //   { row: 1, col: 1, dir: '↖' },
