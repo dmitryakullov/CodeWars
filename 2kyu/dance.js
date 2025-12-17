@@ -52,18 +52,18 @@ function dance(stringDanceFloor) {
       row: i,
       col: j,
       direction: cell,
-      availableMoves: directions[cell](i, j, rowCount, colCount),
+      availableSteps: directions[cell](i, j, rowCount, colCount),
     }))
   );
 
-  const danceFloorWithFilteredAvailableMoves = configuredDanceFloor.map((row) =>
+  const danceFloorWithFilteredAvailableSteps = configuredDanceFloor.map((row) =>
     row.map((cell) => {
-      const filteredAvailableMoves = cell.availableMoves.filter(({ row, col }) => {
+      const filteredAvailableSteps = cell.availableSteps.filter(({ row, col }) => {
         const nearbyCell = configuredDanceFloor[row][col];
 
         if (nearbyCell.direction === 'S') return true;
 
-        const isOpposingArrow = nearbyCell.availableMoves.some((move, index) => {
+        const isOpposingArrow = nearbyCell.availableSteps.some((move, index) => {
           const isExistMatch = move.row === cell.row && move.col === cell.col;
           if (!isExistMatch) return false;
 
@@ -72,23 +72,23 @@ function dance(stringDanceFloor) {
 
         return !isOpposingArrow;
       });
-      return { ...cell, availableMoves: filteredAvailableMoves };
+      return { ...cell, availableSteps: filteredAvailableSteps };
     })
   );
 
-  console.log(danceFloorWithFilteredAvailableMoves[2]);
+  const possibleDanceSteps = [];
 
-  const starts = danceFloorWithFilteredAvailableMoves
+  const starts = danceFloorWithFilteredAvailableSteps
     .flat()
     .filter((value) => value.direction === 'S');
 
   const counter = (cell, sequence) => {
-    const { row, col, direction, availableMoves } = cell;
+    const { row, col, direction, availableSteps } = cell;
   };
 
-  // starts.map((S) => {
-  //   console.log(S);
-  // });
+  starts.forEach((S) => {
+    console.log(S);
+  });
 }
 
 dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘');
@@ -100,7 +100,7 @@ console.timeEnd();
 // row: 2,
 // col: 2,
 // dir: 'S',
-// availableMoves: [
+// availableSteps: [
 //   { row: 2, col: 1, dir: '←' },
 //   { row: 1, col: 1, dir: '↖' },
 //   { row: 1, col: 2, dir: '↑' },
@@ -110,14 +110,3 @@ console.timeEnd();
 //   { row: 3, col: 2, dir: '↓' },
 //   { row: 3, col: 1, dir: '↙' }
 // ]
-
-// console.log(
-//   JSON.stringify(
-//     Object.entries(directions).map(([key, fn]) => {
-//       const res = fn(4, 4, 5, 5);
-//       return [key, res];
-//     }),
-//     null,
-//     2
-//   )
-// );
