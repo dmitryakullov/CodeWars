@@ -5,8 +5,6 @@
 // OK: (→) - ('↑', '↗', '→', '↘', '↓')
 // NO: (→) - ('↙', '←', '↖')
 
-console.time();
-
 const getPositionsAroundCell = (i, j) => [
   { row: i, col: j - 1, direction: '←' },
   { row: i - 1, col: j - 1, direction: '↖' },
@@ -43,6 +41,8 @@ const directions = {
 };
 
 function dance(stringDanceFloor) {
+  let initialCell = null;
+
   const rows = stringDanceFloor.split('\n');
   const rowCount = rows.length;
   const colCount = rows[0].length;
@@ -72,30 +72,57 @@ function dance(stringDanceFloor) {
 
         return !isOpposingArrow;
       });
-      return { ...cell, availableSteps: filteredAvailableSteps };
+
+      const updatedCell = { ...cell, availableSteps: filteredAvailableSteps };
+
+      if (updatedCell.direction === 'S') {
+        initialCell = updatedCell;
+      }
+
+      return updatedCell;
     })
   );
 
   const possibleDanceSteps = [];
 
-  const starts = danceFloorWithFilteredAvailableSteps
-    .flat()
-    .filter((value) => value.direction === 'S');
-
   const counter = (cell, sequence) => {
     const { row, col, direction, availableSteps } = cell;
+
+    if (direction === 'S' && sequence.length > 0) {
+      possibleDanceSteps.push(sequence.map(({ direction }) => direction).join(''));
+
+      return;
+    }
+
+    if (availableSteps.length === 0) {
+      possibleDanceSteps.push('');
+
+      return;
+    }
+
+    availableSteps.forEach((nextCellStep) => {
+      const isCellTouched = sequence.some(
+        (step) =>
+          step.row === nextCellStep.row &&
+          step.col === nextCellStep.col &&
+          step.prevDirection !== 'S'
+      );
+
+      if (isCellTouched) return;
+
+      counter(danceFloorWithFilteredAvailableSteps[nextCellStep.row][nextCellStep.col], [
+        ...sequence,
+        { row, col, direction: nextCellStep.direction, prevDirection: direction },
+      ]);
+    });
   };
 
-  starts.forEach((S) => {
-    console.log(S);
-  });
+  counter(initialCell, []);
+
+  return possibleDanceSteps.sort((a, b) => b.length - a.length)[0];
 }
 
-dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘');
-
-console.timeEnd();
-// ↖→↓←↗
-// ↑↖↓→↓
+console.log(dance('↗↓↖↑↓\n↖↑←↗→\n↑↓↙↖↗\n↘↙←↑←\n↗S↓↖↘'));
 
 // row: 2,
 // col: 2,
