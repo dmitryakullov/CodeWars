@@ -6,14 +6,14 @@
 // NO: (→) - ('↙', '←', '↖')
 
 const getPositionsAroundCell = (i, j) => [
-  { row: i, col: j - 1, direction: '←' },
-  { row: i - 1, col: j - 1, direction: '↖' },
-  { row: i - 1, col: j, direction: '↑' },
-  { row: i - 1, col: j + 1, direction: '↗' },
-  { row: i, col: j + 1, direction: '→' },
-  { row: i + 1, col: j + 1, direction: '↘' },
-  { row: i + 1, col: j, direction: '↓' },
-  { row: i + 1, col: j - 1, direction: '↙' },
+  { row: i, col: j - 1, moveDirection: '←' },
+  { row: i - 1, col: j - 1, moveDirection: '↖' },
+  { row: i - 1, col: j, moveDirection: '↑' },
+  { row: i - 1, col: j + 1, moveDirection: '↗' },
+  { row: i, col: j + 1, moveDirection: '→' },
+  { row: i + 1, col: j + 1, moveDirection: '↘' },
+  { row: i + 1, col: j, moveDirection: '↓' },
+  { row: i + 1, col: j - 1, moveDirection: '↙' },
 ];
 
 const getExistedPositionsOnTheBoard = (cells, maxRow, maxCol) =>
@@ -112,7 +112,7 @@ function dance(stringDanceFloor) {
 
       counter(danceFloorWithFilteredAvailableSteps[nextCellStep.row][nextCellStep.col], [
         ...sequence,
-        { row, col, direction: nextCellStep.direction, prevDirection: direction },
+        { row, col, direction: nextCellStep.moveDirection, prevDirection: direction },
       ]);
     });
   };
@@ -121,8 +121,8 @@ function dance(stringDanceFloor) {
 
   return possibleDanceSteps.sort((a, b) => b.length - a.length)[0];
 }
-
-console.log(dance('↗↓↖↑↓\n↖↑←↗→\n↑↓↙↖↗\n↘↙←↑←\n↗S↓↖↘'));
+console.log(dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘'));
+// console.log(dance('↗↓↖↑↓\n↖↑←↗→\n↑↓↙↖↗\n↘↙←↑←\n↗S↓↖↘'));
 
 // row: 2,
 // col: 2,
