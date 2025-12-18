@@ -6,14 +6,14 @@
 // NO: (→) - ('↙', '←', '↖')
 
 const getPositionsAroundCell = (i, j) => [
-  { row: i, col: j - 1, moveDirection: '←' },
-  { row: i - 1, col: j - 1, moveDirection: '↖' },
-  { row: i - 1, col: j, moveDirection: '↑' },
-  { row: i - 1, col: j + 1, moveDirection: '↗' },
-  { row: i, col: j + 1, moveDirection: '→' },
-  { row: i + 1, col: j + 1, moveDirection: '↘' },
-  { row: i + 1, col: j, moveDirection: '↓' },
-  { row: i + 1, col: j - 1, moveDirection: '↙' },
+  { row: i, col: j - 1, moveDirection: '←', oppositeArrows: ['↘', '→', '↗'] },
+  { row: i - 1, col: j - 1, moveDirection: '↖', oppositeArrows: ['→', '↘', '↓'] },
+  { row: i - 1, col: j, moveDirection: '↑', oppositeArrows: ['↘', '↓', '↙'] },
+  { row: i - 1, col: j + 1, moveDirection: '↗', oppositeArrows: ['↓', '↙', '←'] },
+  { row: i, col: j + 1, moveDirection: '→', oppositeArrows: ['↙', '←', '↖'] },
+  { row: i + 1, col: j + 1, moveDirection: '↘', oppositeArrows: ['←', '↖', '↑'] },
+  { row: i + 1, col: j, moveDirection: '↓', oppositeArrows: ['↖', '↑', '↗'] },
+  { row: i + 1, col: j - 1, moveDirection: '↙', oppositeArrows: ['↑', '↗', '→'] },
 ];
 
 const getExistedPositionsOnTheBoard = (cells, maxRow, maxCol) =>
@@ -58,17 +58,10 @@ function dance(stringDanceFloor) {
 
   const danceFloorWithFilteredAvailableSteps = configuredDanceFloor.map((row) =>
     row.map((cell) => {
-      const filteredAvailableSteps = cell.availableSteps.filter(({ row, col }) => {
+      const filteredAvailableSteps = cell.availableSteps.filter(({ row, col, oppositeArrows }) => {
         const nearbyCell = configuredDanceFloor[row][col];
 
-        if (nearbyCell.direction === 'S') return true;
-
-        const isOpposingArrow = nearbyCell.availableSteps.some((move, index) => {
-          const isExistMatch = move.row === cell.row && move.col === cell.col;
-          if (!isExistMatch) return false;
-
-          return index !== 0 && index !== 4;
-        });
+        const isOpposingArrow = oppositeArrows.some((arrow) => arrow === nearbyCell.direction);
 
         return !isOpposingArrow;
       });
@@ -121,8 +114,11 @@ function dance(stringDanceFloor) {
 
   return possibleDanceSteps.sort((a, b) => b.length - a.length)[0];
 }
-console.log(dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘'));
-// console.log(dance('↗↓↖↑↓\n↖↑←↗→\n↑↓↙↖↗\n↘↙←↑←\n↗S↓↖↘'));
+// console.log(
+//   dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘'),
+//   dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘').length
+// );
+console.log(dance('↗↓↖↑↓\n↖↑←↗→\n↑↓↙↖↗\n↘↙←↑←\n↗S↓↖↘'));
 
 // row: 2,
 // col: 2,
