@@ -119,4 +119,56 @@ function dance(stringDanceFloor) {
 }
 
 console.log(dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘'));
-// console.log(dance('↗↓↖↑↓\n↖↑←↗→\n↑↓↙↖↗\n↘↙←↑←\n↗S↓↖↘'));
+
+//
+//
+//
+//
+//
+
+// Iterative counter implementation (recursion replacement):
+//
+// const iterativeCounter = (cell, sequence) => {
+//   const stack = [{ cell, sequence }];
+
+//   while (stack.length > 0) {
+//     const node = stack.pop();
+
+//     const { row, col, direction, availableSteps } = node.cell;
+
+//     if (direction === 'S' && node.sequence.length > 0) {
+//       possibleDanceSteps.push(node.sequence.map(({ direction }) => direction).join(''));
+
+//       continue;
+//     }
+
+//     if (availableSteps.length === 0) {
+//       possibleDanceSteps.push('');
+
+//       continue;
+//     }
+
+//     availableSteps.forEach((nextCellStep) => {
+//       const isCellTouched = node.sequence.some(
+//         (step) =>
+//           step.row === nextCellStep.row &&
+//           step.col === nextCellStep.col &&
+//           step.prevDirection !== 'S'
+//       );
+
+//       if (isCellTouched) {
+//         possibleDanceSteps.push('');
+
+//         return;
+//       }
+
+//       stack.push({
+//         cell: danceFloorWithFilteredAvailableSteps[nextCellStep.row][nextCellStep.col],
+//         sequence: [
+//           ...node.sequence,
+//           { row, col, direction: nextCellStep.moveDirection, prevDirection: direction },
+//         ],
+//       });
+//     });
+//   }
+// };
