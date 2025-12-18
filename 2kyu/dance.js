@@ -1,5 +1,5 @@
 // https://www.codewars.com/kata/58f58dc3663082a4ba000033/train/javascript
-// TIME
+// 18.12.2025
 
 // Available moves from a cell based on its direction
 // OK: (→) - ('↑', '↗', '→', '↘', '↓')
