@@ -21,7 +21,6 @@ const getExistedPositionsOnTheBoard = (cells, maxRow, maxCol) =>
 
 const getValidPositions = (sliceIndex, i, j, maxRow, maxCol) => {
   const positionsList = [...getPositionsAroundCell(i, j), ...getPositionsAroundCell(i, j)];
-
   const allowedMovementDirections = positionsList.slice(sliceIndex, sliceIndex + 5);
 
   return getExistedPositionsOnTheBoard(allowedMovementDirections, maxRow, maxCol);
@@ -78,7 +77,7 @@ function dance(stringDanceFloor) {
 
   const possibleDanceSteps = [];
 
-  const counter = (cell, sequence) => {
+  const recursiveCounter = (cell, sequence) => {
     const { row, col, direction, availableSteps } = cell;
 
     if (direction === 'S' && sequence.length > 0) {
@@ -101,35 +100,23 @@ function dance(stringDanceFloor) {
           step.prevDirection !== 'S'
       );
 
-      if (isCellTouched) return;
+      if (isCellTouched) {
+        possibleDanceSteps.push('');
 
-      counter(danceFloorWithFilteredAvailableSteps[nextCellStep.row][nextCellStep.col], [
+        return;
+      }
+
+      recursiveCounter(danceFloorWithFilteredAvailableSteps[nextCellStep.row][nextCellStep.col], [
         ...sequence,
         { row, col, direction: nextCellStep.moveDirection, prevDirection: direction },
       ]);
     });
   };
 
-  counter(initialCell, []);
+  recursiveCounter(initialCell, []);
 
   return possibleDanceSteps.sort((a, b) => b.length - a.length)[0];
 }
-// console.log(
-//   dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘'),
-//   dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘').length
-// );
-console.log(dance('↗↓↖↑↓\n↖↑←↗→\n↑↓↙↖↗\n↘↙←↑←\n↗S↓↖↘'));
 
-// row: 2,
-// col: 2,
-// dir: 'S',
-// availableSteps: [
-//   { row: 2, col: 1, dir: '←' },
-//   { row: 1, col: 1, dir: '↖' },
-//   { row: 1, col: 2, dir: '↑' },
-//   { row: 1, col: 3, dir: '↗' },
-//   { row: 2, col: 3, dir: '→' },
-//   { row: 3, col: 3, dir: '↘' },
-//   { row: 3, col: 2, dir: '↓' },
-//   { row: 3, col: 1, dir: '↙' }
-// ]
+console.log(dance('↖→↓←↗\n↑←↓→↓\n↑→S←↓\n↑←↓→↓\n↙→↑←↘'));
+// console.log(dance('↗↓↖↑↓\n↖↑←↗→\n↑↓↙↖↗\n↘↙←↑←\n↗S↓↖↘'));
